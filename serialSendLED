@@ -1,0 +1,54 @@
+int rb = 2;  
+int gb = 3;
+int bb = 4;
+char val; // Data received from the serial port
+int red = 12; // Set the pin to digital I/O 4
+int green = 11;
+int blue = 10;
+int r,g,b;
+
+void setup() {
+  pinMode(rb, INPUT);             // Set pin 0 as an input
+  pinMode(gb, INPUT);             // Set pin 0 as an input
+  pinMode(bb, INPUT);             // Set pin 0 as an input
+  Serial.begin(9600);                    // Start serial communication at 9600 bps
+  pinMode(red, OUTPUT); // Set pin as OUTPUT
+  pinMode(green, OUTPUT);
+  pinMode(blue, OUTPUT);
+  Serial.begin(9600); // Start serial communication at 9600 bps
+  int red_light_pin= 5;
+int green_light_pin = 6;
+int blue_light_pin = 7;
+}
+
+void loop() {
+  if (digitalRead(rb) == HIGH) {  // If switch is ON,
+    Serial.write(1);               // send 1 to Processing
+     digitalWrite(red, HIGH); 
+  } else {                               // If the switch is not ON,
+    Serial.write(0);               // send 0 to Processing
+         digitalWrite(red, LOW);
+  }
+  delay(100);                            // Wait 100 milliseconds
+  
+  if (digitalRead(gb) == HIGH) {  // If switch is ON,
+         digitalWrite(green, HIGH); 
+    Serial.write(3);               // send 1 to Processing
+  } else {                               // If the switch is not ON,
+    Serial.write(2);               // send 0 to Processing
+          digitalWrite(green, LOW); 
+  }
+  delay(100);    
+
+  if (digitalRead(bb) == HIGH) {  // If switch is ON,
+             digitalWrite(blue, HIGH); 
+    Serial.write(5);               // send 1 to Processing
+  } else {                               // If the switch is not ON,
+    Serial.write(4);               // send 0 to Processing
+           digitalWrite(blue, LOW);
+  }
+  delay(100);    
+
+
+ 
+}
